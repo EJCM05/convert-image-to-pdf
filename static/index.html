@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertidor de Imágenes a PDF</title>
+    <link rel="shortcut icon" href="/static/images/favicon.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@heroicons/react@1.0.6/outline/index.min.css">
+    <meta name="theme-color" content="#317EFB"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="white">
+    <link rel="manifest" href="/manifest.json">
+
+    <style>
+        /* Ajustes para Cropper.js */
+        .cropper-view-box,
+        .cropper-face {
+            border-radius: 0;
+            box-shadow: 0 0 0 2px #38bdf8;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900 min-h-screen flex flex-col items-center justify-between p-0 font-sans">
+
+    <div id="app-container" class="w-full max-w-sm bg-white rounded-lg shadow-xl overflow-hidden flex flex-col flex-grow relative">
+        
+        <div id="view-content" class="flex-grow overflow-y-auto">
+            </div>
+
+        <div id="loading" class="hidden fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-50 text-white text-xl font-bold">
+            Procesando...
+        </div>
+    </div>
+
+    
+    <nav class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200 z-40">
+        <div class="flex justify-around items-center h-16 max-w-sm mx-auto">
+            
+            <button class="nav-item flex flex-col items-center justify-center text-gray-600 hover:text-cyan-500 transition-colors p-2" data-view="home">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+                <span class="text-xs">Inicio</span>
+            </button>
+            
+            <button class="nav-item flex flex-col items-center justify-center text-gray-600 hover:text-cyan-500 transition-colors p-2" data-view="my_pdfs">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span class="text-xs">Mis PDFs</span>
+            </button>
+        </div>
+    </nav>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <script src="./static/app.js"></script>
+      <script>
+        // Comprueba si el navegador soporta Service Workers
+        if ('serviceWorker' in navigator) {
+            // Espera a que la página cargue
+            window.addEventListener('load', () => {
+                // Registra el archivo sw.js
+                // El navegador descargará este archivo y lo ejecutará
+                navigator.serviceWorker.register('/static/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registrado con éxito. Scope:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('Fallo en el registro del ServiceWorker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
