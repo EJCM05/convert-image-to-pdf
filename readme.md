@@ -1,4 +1,7 @@
-![LOGOAPP](https://i.postimg.cc/d1cvH5Zn/Copilot-20251022-090819.png)
+<div align="center">
+    <img src="https://i.postimg.cc/d1cvH5Zn/Copilot-20251022-090819.png" width="25%">
+</div>
+
 # Convertidor de Imágenes a PDF PWA
 
 Una aplicación web progresiva (PWA) sencilla para convertir imágenes a archivos PDF.
